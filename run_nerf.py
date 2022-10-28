@@ -433,45 +433,45 @@ def config_parser():
 
     # training options
     parser.add_argument("--netdepth", type=int, default=8, 
-                        help='layers in network')
+                        help='layers in network')       # 网络深度
     parser.add_argument("--netwidth", type=int, default=256, 
-                        help='channels per layer')
+                        help='channels per layer')      # 每层神经元个数
     parser.add_argument("--netdepth_fine", type=int, default=8, 
-                        help='layers in fine network')
+                        help='layers in fine network')      
     parser.add_argument("--netwidth_fine", type=int, default=256, 
                         help='channels per layer in fine network')
     parser.add_argument("--N_rand", type=int, default=32*32*4, 
-                        help='batch size (number of random rays per gradient step)')
+                        help='batch size (number of random rays per gradient step)')        # batch size 光束的数量
     parser.add_argument("--lrate", type=float, default=5e-4, 
                         help='learning rate')
     parser.add_argument("--lrate_decay", type=int, default=250, 
                         help='exponential learning rate decay (in 1000 steps)')
     parser.add_argument("--chunk", type=int, default=1024*32, 
-                        help='number of rays processed in parallel, decrease if running out of memory')
+                        help='number of rays processed in parallel, decrease if running out of memory')     
     parser.add_argument("--netchunk", type=int, default=1024*64, 
-                        help='number of pts sent through network in parallel, decrease if running out of memory')
+                        help='number of pts sent through network in parallel, decrease if running out of memory')       # 这两个参数可以减少试一下
     parser.add_argument("--no_batching", action='store_true', 
                         help='only take random rays from 1 image at a time')
     parser.add_argument("--no_reload", action='store_true', 
                         help='do not reload weights from saved ckpt')
     parser.add_argument("--ft_path", type=str, default=None, 
-                        help='specific weights npy file to reload for coarse network')
+                        help='specific weights npy file to reload for coarse network')      # 为coarse network重新加载特定权重npy文件
 
     # rendering options
     parser.add_argument("--N_samples", type=int, default=64, 
-                        help='number of coarse samples per ray')
+                        help='number of coarse samples per ray')        # coarse samples
     parser.add_argument("--N_importance", type=int, default=0,
-                        help='number of additional fine samples per ray')
+                        help='number of additional fine samples per ray')       # fine samples
     parser.add_argument("--perturb", type=float, default=1.,
                         help='set to 0. for no jitter, 1. for jitter')
     parser.add_argument("--use_viewdirs", action='store_true', 
                         help='use full 5D input instead of 3D')
     parser.add_argument("--i_embed", type=int, default=0, 
-                        help='set 0 for default positional encoding, -1 for none')
+                        help='set 0 for default positional encoding, -1 for none')      # 设置为 -1 不使用默认的positional encoding
     parser.add_argument("--multires", type=int, default=10, 
-                        help='log2 of max freq for positional encoding (3D location)')
+                        help='log2 of max freq for positional encoding (3D location)')      # positional encoding的最大频率的log2 （3D 位置坐标）
     parser.add_argument("--multires_views", type=int, default=4, 
-                        help='log2 of max freq for positional encoding (2D direction)')
+                        help='log2 of max freq for positional encoding (2D direction)')     # positional encoding的最大频率的log2 （2D 方向）
     parser.add_argument("--raw_noise_std", type=float, default=0., 
                         help='std dev of noise added to regularize sigma_a output, 1e0 recommended')
 
