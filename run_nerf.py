@@ -476,23 +476,23 @@ def config_parser():
                         help='std dev of noise added to regularize sigma_a output, 1e0 recommended')
 
     parser.add_argument("--render_only", action='store_true', 
-                        help='do not optimize, reload weights and render out render_poses path')
+                        help='do not optimize, reload weights and render out render_poses path')        #  ？？
     parser.add_argument("--render_test", action='store_true', 
-                        help='render the test set instead of render_poses path')
+                        help='render the test set instead of render_poses path')        # ？？
     parser.add_argument("--render_factor", type=int, default=0, 
-                        help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')
+                        help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')      # downsample加速渲染
 
     # training options
     parser.add_argument("--precrop_iters", type=int, default=0,
-                        help='number of steps to train on central crops')
+                        help='number of steps to train on central crops')       # ？？
     parser.add_argument("--precrop_frac", type=float,
-                        default=.5, help='fraction of img taken for central crops') 
+                        default=.5, help='fraction of img taken for central crops')         # ？？
 
     # dataset options
     parser.add_argument("--dataset_type", type=str, default='llff', 
                         help='options: llff / blender / deepvoxels')
     parser.add_argument("--testskip", type=int, default=8, 
-                        help='will load 1/N images from test/val sets, useful for large datasets like deepvoxels')
+                        help='will load 1/N images from test/val sets, useful for large datasets like deepvoxels')      # 从 test/val 集中选取 1/N 张图像
 
     ## deepvoxels flags
     parser.add_argument("--shape", type=str, default='greek', 
@@ -506,15 +506,15 @@ def config_parser():
 
     ## llff flags
     parser.add_argument("--factor", type=int, default=8, 
-                        help='downsample factor for LLFF images')
+                        help='downsample factor for LLFF images')       # 分辨率downsample
     parser.add_argument("--no_ndc", action='store_true', 
-                        help='do not use normalized device coordinates (set for non-forward facing scenes)')
+                        help='do not use normalized device coordinates (set for non-forward facing scenes)')        #非前向场景时设置，不使用标准化设备坐标
     parser.add_argument("--lindisp", action='store_true', 
-                        help='sampling linearly in disparity rather than depth')
+                        help='sampling linearly in disparity rather than depth')        # ？？在视差中线性采样
     parser.add_argument("--spherify", action='store_true', 
-                        help='set for spherical 360 scenes')
+                        help='set for spherical 360 scenes')           # 360度场景
     parser.add_argument("--llffhold", type=int, default=8, 
-                        help='will take every 1/N images as LLFF test set, paper uses 8')
+                        help='will take every 1/N images as LLFF test set, paper uses 8')       # 选test的比例
 
     # logging/saving options
     parser.add_argument("--i_print",   type=int, default=100, 
@@ -526,7 +526,7 @@ def config_parser():
     parser.add_argument("--i_testset", type=int, default=50000, 
                         help='frequency of testset saving')
     parser.add_argument("--i_video",   type=int, default=50000, 
-                        help='frequency of render_poses video saving')
+                        help='frequency of render_poses video saving')          
 
     return parser
 
